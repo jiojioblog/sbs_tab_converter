@@ -14,6 +14,8 @@ fileName: str
 fileExtension: str
 filePath, fullFileName = os.path.split(args.file)
 fileName, fileExtension = os.path.splitext(fullFileName)
+if not filePath:
+    filePath = '.'
 targetFile: str = f'{filePath}/{fileName}_{args.target}{fileExtension}'
 command: str = f'ffmpeg -i {args.file} -vf stereo3d={args.source}:{args.target} -c:a copy {targetFile}'
 try:
